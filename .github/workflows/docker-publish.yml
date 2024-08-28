@@ -31,3 +31,19 @@ jobs:
           push: true
           tags: |
             ${{ secrets.DOCKER_USERNAME }}/grupo2diplomado:${{ github.event.release.tag_name }}
+
+      - name: Update Version in Helm
+        run: |
+            git clone https://github.com/ju4nr3v0l/grupo2diplomadok8s.git
+            cd grupo2diplomadok8s/grupo2diplomado-chart
+            sed -i "s/tag: $((${{ github.event.release.tag_name }}-1))/tag: ${{ github.event.release.tag_name }}/" values.yaml
+            git config user.email "actions@github.com"
+            git config user.name "GitHub Actions"
+
+      - name: Commit and Push Changes
+        uses: actions-js/push@master
+        with:
+          directory: grupo2diplomadok8s
+          github_token: ${{ secrets.TOKEN }}
+          repository: ju4nr3v0l/grupo2diplomadok8s
+          message: Version updated ${date}
