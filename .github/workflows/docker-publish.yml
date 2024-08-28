@@ -36,7 +36,7 @@ jobs:
         run: |
             git clone https://github.com/ju4nr3v0l/grupo2diplomadok8s.git
             cd grupo2diplomadok8s/grupo2diplomado-chart
-            sed -i "s/tag: $((${{ github.event.release.tag_name }}-1))/tag: ${{ github.event.release.tag_name }}/" values.yaml
+            sed -i "s/tag: $((${{ github.event.release.tag_name }}))/tag: ${{ github.event.release.tag_name }}/" values.yaml
             git config user.email "actions@github.com"
             git config user.name "GitHub Actions"
 
