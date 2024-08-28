@@ -46,4 +46,4 @@ jobs:
           directory: grupo2diplomadok8s
           github_token: ${{ secrets.TOKEN }}
           repository: ju4nr3v0l/grupo2diplomadok8s
-          message: Version updated ${date}
+          message: Version updated ${{ github.event.release.tag_name }}
